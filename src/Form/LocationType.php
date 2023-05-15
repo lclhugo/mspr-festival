@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Location;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,7 +17,10 @@ class LocationType extends AbstractType
             ->add('description')
             ->add('latitude')
             ->add('longitude')
-            ->add('categoryId')
+            ->add('categoryId', EntityType::class, [
+                'class' => 'App\Entity\LocationCategory',
+                'choice_label' => 'name',
+            ])
         ;
     }
 
