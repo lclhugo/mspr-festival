@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Artist;
+use App\Entity\MusicGenre;
 use App\Form\ArtistType;
 use App\Repository\ArtistRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,10 +42,12 @@ class ArtistController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_artist_show', methods: ['GET'])]
-    public function show(Artist $artist): Response
+    public function show(Artist $artist ): Response
     {
+        $musicGenres = $artist->getMusicgenres();
         return $this->render('artist/show.html.twig', [
             'artist' => $artist,
+            'musicGenres' => $musicGenres,
         ]);
     }
 

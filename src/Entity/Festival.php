@@ -40,10 +40,14 @@ class Festival
     #[ORM\OneToMany(mappedBy: 'festivalId', targetEntity: Notification::class)]
     private Collection $notifications;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'festivals')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,6 +182,33 @@ class Festival
             if ($notification->getFestivalId() === $this) {
                 $notification->setFestivalId(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addFestival($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFestival($this);
         }
 
         return $this;
