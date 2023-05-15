@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Event;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,12 +18,12 @@ class EventType extends AbstractType
             ->add('name', TextType::class , [
                 'label' => 'Nom',
             ])
-            ->add('startDate', DateType::class, [
+            ->add('startDate', DateTimeType::class, [
+                'label' => 'Date de début',
                 'widget' => 'single_text',
                 'attr' => ['min' => date('Y-m-d')],
-                'label' => 'Date de début',
             ])
-            ->add('endDate', DateType::class, [
+            ->add('endDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'attr' => ['min' => date('Y-m-d')],
                 'label' => 'Date de fin',
