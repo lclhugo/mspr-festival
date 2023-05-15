@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New LocationCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new LocationCategory</h1>
+
+    {{ include('location_category/_form.html.twig') }}
+
+    <a href="{{ path('app_location_category_index') }}">back to list</a>
+{% endblock %}
