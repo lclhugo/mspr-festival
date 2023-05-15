@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MusicGenre{% endblock %}
+
+{% block body %}
+    <h1>Create new MusicGenre</h1>
+
+    {{ include('music_genre/_form.html.twig') }}
+
+    <a href="{{ path('app_music_genre_index') }}">back to list</a>
+{% endblock %}
