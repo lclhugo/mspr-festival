@@ -15,7 +15,11 @@ class NotificationType extends AbstractType
             ->add('content')
             ->add('date')
             ->add('important')
-            ->add('festivalId')
+            ->add('festivalId', EntityType::class, [
+                'class' => 'App\Entity\Festival',
+                'choice_label' => 'name',
+            ])
+        ;
         ;
     }
 
