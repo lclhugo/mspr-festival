@@ -7,6 +7,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NotificationRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+
 class Notification
 {
     #[ORM\Id]
@@ -78,4 +80,11 @@ class Notification
 
         return $this;
     }
+
+    #[ORM\PrePersist]
+    public function setDateValue()
+    {
+        $this->date = new \DateTime();
+    }
+
 }

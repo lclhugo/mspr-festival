@@ -28,10 +28,12 @@ class FestivalController extends AbstractController
         $form = $this->createForm(FestivalType::class, $festival);
         $form->handleRequest($request);
 
+        //endDate can't be before startDate
         if ($form->isSubmitted() && $form->isValid()) {
-            $festivalRepository->save($festival, true);
-
-            return $this->redirectToRoute('app_festival_index', [], Response::HTTP_SEE_OTHER);
+            if ($festival->getEndDate() < $festival->getStartDate()) {
+                $this->addFlash('FestivalError', 'La date de fin ne peut pas être antérieure à la date de début');
+                return $this->redirectToRoute('app_festival_new');
+            }
         }
 
         return $this->renderForm('festival/new.html.twig', [
