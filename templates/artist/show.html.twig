@@ -19,6 +19,12 @@
                 <th>Description</th>
                 <td>{{ artist.description }}</td>
             </tr>
+            <tr>
+                <th>Genre musical</th>
+                {%for musicGenres in artist.musicGenres%}
+                    <td>{{ musicGenres.name }}</td>
+                {%endfor%}
+            </tr>
         </tbody>
     </table>
 

@@ -24,9 +24,13 @@ class Artist
     #[ORM\OneToMany(mappedBy: 'artistId', targetEntity: Event::class)]
     private Collection $events;
 
+    #[ORM\ManyToMany(targetEntity: MusicGenre::class, inversedBy: 'artists')]
+    private Collection $musicgenres;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
+        $this->musicgenres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +88,30 @@ class Artist
                 $event->setArtistId(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MusicGenre>
+     */
+    public function getMusicgenres(): Collection
+    {
+        return $this->musicgenres;
+    }
+
+    public function addMusicgenre(MusicGenre $musicgenre): self
+    {
+        if (!$this->musicgenres->contains($musicgenre)) {
+            $this->musicgenres->add($musicgenre);
+        }
+
+        return $this;
+    }
+
+    public function removeMusicgenre(MusicGenre $musicgenre): self
+    {
+        $this->musicgenres->removeElement($musicgenre);
 
         return $this;
     }

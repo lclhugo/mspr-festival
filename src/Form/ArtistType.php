@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Artist;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,6 +15,13 @@ class ArtistType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
+            ->add('musicgenres', EntityType::class, [
+                'class' => 'App\Entity\MusicGenre',
+                'choice_label' => 'name',
+                'label' => 'Genre musical',
+                'multiple' => true,
+                'expanded' => true,
+            ])
         ;
     }
 
