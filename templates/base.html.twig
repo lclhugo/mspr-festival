@@ -13,7 +13,17 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% if app.user %}
+        <body>
+            {% block body %}{% endblock %}
+        </body>
+    {% else %}
+        <body>
+            <div class="mb-3">
+                Vous devez être inscrit ou connecter pour consulter les pags : 
+                <a href="{{ path('app_login') }}">Login</a> 
+                <a href="{{ path('app_register') }}">Signup</a>
+            </div>
+        </body>
+    {% endif %}
 </html>
