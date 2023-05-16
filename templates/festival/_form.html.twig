@@ -1,4 +1,44 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+        {% for message in app.flashes('festivalError') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+<div class="form-group">
+    {{ form_errors(form.name) }}
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name) }}
+</div>
+<div class="form-group">
+    {{ form_errors(form.startDate) }}
+    {{ form_label(form.startDate) }}
+    {{ form_widget(form.startDate) }}
+</div>
+<div class="form-group">
+    {{ form_errors(form.endDate) }}
+    {{ form_label(form.endDate) }}
+    {{ form_widget(form.endDate) }}
+</div>
+<div class="form-group">
+    {{ form_errors(form.description) }}
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description) }}
+</div>
+<div class="form-group">
+    {{ form_errors(form.image) }}
+    {{ form_label(form.image) }}
+    {{ form_widget(form.image) }}
+</div>
+<div class="form-group">
+    {{ form_errors(form.organizer) }}
+    {{ form_label(form.organizer) }}
+    {{ form_widget(form.organizer) }}
+</div>
+<p class="text-muted mt-4">Les champs marqués d'un * sont obligatoires.</p>
+
+
+<button class="btn btn-success float-end mt-4">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
+
