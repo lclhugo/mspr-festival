@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Festival index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-4 mb-4">Festival index</h1>
+
+    {% for message in app.flashes('festivalSuccess') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    <div class="container mb-5">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+{#                <th>Id</th>#}
+                <th>Nom</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Organisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for festival in festivals %}
+            <tr>
+{#                <td>{{ festival.id }}</td>#}
+                <td>{{ festival.name }}</td>
+                <td>{{ festival.startDate ? festival.startDate|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ festival.endDate ? festival.endDate|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ festival.description }}</td>
+                <td>{{ festival.image }}</td>
+                <td>{{ festival.organizer }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_festival_show', {'id': festival.id}) }}">Voir</a>
+                    <a class="btn btn-primary" href="{{ path('app_festival_edit', {'id': festival.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun festival</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <a class="btn btn-primary float-end mb-5" href="{{ path('app_festival_new') }}">Ajouter</a>
+    </div>
+
+
+{% endblock %}
