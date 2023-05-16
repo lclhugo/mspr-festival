@@ -28,12 +28,16 @@ class FestivalController extends AbstractController
         $form = $this->createForm(FestivalType::class, $festival);
         $form->handleRequest($request);
 
-        //endDate can't be before startDate
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($festival->getEndDate() < $festival->getStartDate()) {
-                $this->addFlash('FestivalError', 'La date de fin ne peut pas être antérieure à la date de début');
+            if ($festival->getStartDate() > $festival->getEndDate()) {
+                $this->addFlash('festivalError', 'La date de début doit être antérieure à la date de fin');
                 return $this->redirectToRoute('app_festival_new');
             }
+            $festivalRepository->save($festival, true);
+            $this->addFlash('festivalSuccess', 'Le festival a bien été ajouté');
+
+            return $this->redirectToRoute('app_festival_index', [], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->renderForm('festival/new.html.twig', [
@@ -57,7 +61,13 @@ class FestivalController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //compare the two datetime object startDate and endDate
+            if ($festival->getStartDate() > $festival->getEndDate()) {
+                $this->addFlash('festivalError', 'La date de début doit être antérieure à la date de fin');
+                return $this->redirectToRoute('app_festival_edit', ['id' => $festival->getId()]);
+            }
             $festivalRepository->save($festival, true);
+            $this->addFlash('festivalSuccess', 'Le festival a bien été modifié');
 
             return $this->redirectToRoute('app_festival_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -71,7 +81,7 @@ class FestivalController extends AbstractController
     #[Route('/{id}', name: 'app_festival_delete', methods: ['POST'])]
     public function delete(Request $request, Festival $festival, FestivalRepository $festivalRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$festival->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $festival->getId(), $request->request->get('_token'))) {
             $festivalRepository->remove($festival, true);
         }
 
