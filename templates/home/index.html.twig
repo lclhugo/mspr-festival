@@ -8,7 +8,6 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-{% if app.user %}
         <div class="example-wrapper">
             <h1>Hello {{ controller_name }}!</h1>
 
@@ -22,10 +21,5 @@
         <div class="mb-3">
             You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
-{% else %}
-        <div class="mb-3">
-            Vous devez être connecter pour consulter la page : <a href="{{ path('app_login') }}">Login</a>
-        </div>
-{% endif %}
 
 {% endblock %}
