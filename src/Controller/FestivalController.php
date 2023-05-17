@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Festival;
 use App\Form\FestivalType;
 use App\Repository\FestivalRepository;
+use App\Repository\NotificationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,8 +48,10 @@ class FestivalController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_festival_show', methods: ['GET'])]
-    public function show(Festival $festival): Response
+    public function show(Festival $festival, NotificationRepository $notificationRepository): Response
     {
+        dd($notificationRepository->findByFestivalId($festival)); // marche
+        dd($festival->getNotifications()); // marche pas
         return $this->render('festival/show.html.twig', [
             'festival' => $festival,
         ]);
