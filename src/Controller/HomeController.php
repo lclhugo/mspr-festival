@@ -15,4 +15,12 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    #[Route('/map', name: 'map')]
+    public function map(): Response
+    {
+        return $this->render('home/map.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
 }

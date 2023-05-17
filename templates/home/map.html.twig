@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Map{% endblock %}
+
+{% block body %}
+<h1>Map</h1>
+
+<p id="latitude"></p>
+<p id="longitude"></p>
+
+<script>
+
+    // OBTENIR LA POSITION DE L'UTILISATEUR
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log('La géolocalisation n\'est pas prise en charge par ce navigateur.');
+        }
+    }
+
+    function showPosition(position) {
+        document.getElementById('latitude').textContent = 'Latitude : ' + position.coords.latitude;
+        document.getElementById('longitude').textContent = 'Longitude : ' + position.coords.longitude;
+    }
+
+    getLocation();
+    
+
+</script>
+
+{% endblock %}
