@@ -54,6 +54,7 @@ class FestivalController extends AbstractController
         ]);
     }
 
+
     #[Route('/{id}/edit', name: 'app_festival_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Festival $festival, FestivalRepository $festivalRepository): Response
     {

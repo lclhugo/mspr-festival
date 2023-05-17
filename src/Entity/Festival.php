@@ -34,10 +34,10 @@ class Festival
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $organizer = null;
 
-    #[ORM\OneToMany(mappedBy: 'festivalId', targetEntity: Event::class)]
+    #[ORM\OneToMany(mappedBy: 'festival', targetEntity: Event::class)]
     private Collection $events;
 
-    #[ORM\OneToMany(mappedBy: 'festivalId', targetEntity: Notification::class)]
+    #[ORM\OneToMany(mappedBy: 'festival', targetEntity: Notification::class)]
     private Collection $notifications;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'festivals')]
@@ -139,7 +139,7 @@ class Festival
     {
         if (!$this->events->contains($event)) {
             $this->events->add($event);
-            $event->setFestivalId($this);
+            $event->setFestival($this);
         }
 
         return $this;
@@ -149,17 +149,15 @@ class Festival
     {
         if ($this->events->removeElement($event)) {
             // set the owning side to null (unless already changed)
-            if ($event->getFestivalId() === $this) {
-                $event->setFestivalId(null);
+            if ($event->getFestival() === $this) {
+                $event->setFestival(null);
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Notification>
-     */
+
     public function getNotifications(): Collection
     {
         return $this->notifications;
@@ -169,7 +167,7 @@ class Festival
     {
         if (!$this->notifications->contains($notification)) {
             $this->notifications->add($notification);
-            $notification->setFestivalId($this);
+            $notification->setFestival($this);
         }
 
         return $this;
@@ -179,8 +177,8 @@ class Festival
     {
         if ($this->notifications->removeElement($notification)) {
             // set the owning side to null (unless already changed)
-            if ($notification->getFestivalId() === $this) {
-                $notification->setFestivalId(null);
+            if ($notification->getFestival() === $this) {
+                $notification->setFestival(null);
             }
         }
 

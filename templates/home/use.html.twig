@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} page festival {% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>Bienvenue sur la page du festival  {{festival.name}} </h1>
+<navbar class="navbar navbar-menu bg-primary"> nav</navbar>
+<section class="important-section"> </section>
+<section class="program-section"> </section>
+<section class="notification-section"> </section>
+<section class="map-section"> </section>
+
+{{  dump(festival.id, festival.notifications)}}
+
+</div>
+
+
+
+{% endblock %}
+ 
+
