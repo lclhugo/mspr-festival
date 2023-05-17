@@ -1,9 +1,9 @@
-# camargue_nautisme
+# FESTOCHE
 
 # commandes:
 
 installer le projet:
-`git clone https://github.com/lclhugo/camargue_nautisme`
+`[git clone https://github.com/lclhugo/camargue_nautisme](https://github.com/lclhugo/mspr-festival)`
 
 installer les packages composer
 `composer install`
