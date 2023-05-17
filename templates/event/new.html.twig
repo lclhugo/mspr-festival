@@ -7,5 +7,5 @@
 
     {{ include('event/_form.html.twig') }}
 
-    <a href="{{ path('app_event_index') }}">back to list</a>
+    <a href="{{ path('app_event_index', {'festivalId': festivalId}) }}">back to list</a>
 {% endblock %}
