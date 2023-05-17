@@ -24,6 +24,7 @@ class HomeController extends AbstractController
     public function use(Festival $festival, FestivalRepository $festivalRepository, Request $request): Response
     {
         dd($festivalRepository->find(1)->getNotifications());
+        dd($festivalRepository->find(1)->getEvents());
         return $this->render('home/use.html.twig', [
             'festival' => $festival,
         ]);
