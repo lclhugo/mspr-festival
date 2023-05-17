@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/festival')]
+#[Route('/admin/festival')]
 class FestivalController extends AbstractController
 {
     #[Route('/', name: 'app_festival_index', methods: ['GET'])]
