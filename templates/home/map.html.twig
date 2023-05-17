@@ -12,24 +12,6 @@
 
 <div id="map" style="width: 100%; height: 500px;"></div>
 
-{# OBTENIR LA POSITION DE L'UTILISATEUR #}
-<script>
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            console.log('La géolocalisation n\'est pas prise en charge par ce navigateur.');
-        }
-    }
-
-    function showPosition(position) {
-        document.getElementById('latitude').textContent = 'Latitude : ' + position.coords.latitude;
-        document.getElementById('longitude').textContent = 'Longitude : ' + position.coords.longitude;
-    }
-
-    getLocation();
-</script>
-
   <h1>Locations</h1>
 
     <table class="table">
@@ -63,8 +45,40 @@
         {% endfor %}
         </tbody>
     </table>
-{# CREATION DE LA CARTE #}
+
 <script>
+
+    {# OBTENIR LA POSITION DE L'UTILISATEUR #}
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log('La géolocalisation n\'est pas prise en charge par ce navigateur.');
+        }
+    }
+
+    function showPosition(position) {
+        document.getElementById('latitude').textContent = 'Latitude : ' + position.coords.latitude;
+        document.getElementById('longitude').textContent = 'Longitude : ' + position.coords.longitude;
+    }
+
+    getLocation();
+let positions = [];
+    if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(function(position) {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+
+        positions.push(latitude, longitude);
+    });
+    } else {
+    console.log('La géolocalisation n\'est pas prise en charge par ce navigateur.');
+}
+
+        console.log(positions);
+
+
+
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 11,
@@ -418,6 +432,8 @@
             map: map
         });
         {% endfor %}
+
+       
     }
 
     google.maps.event.addDomListener(window, 'load', initMap);
