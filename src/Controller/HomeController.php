@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\LocationRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,10 +18,11 @@ class HomeController extends AbstractController
     }
 
     #[Route('/map', name: 'map')]
-    public function map(): Response
+    public function map(LocationRepository $locationRepository): Response
     {
         return $this->render('home/map.html.twig', [
             'controller_name' => 'HomeController',
+            'locations' => $locationRepository->findAll(),
         ]);
     }
 }
