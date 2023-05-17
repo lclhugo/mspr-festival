@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/notification')]
+#[Route('/admin/notification')]
 class NotificationController extends AbstractController
 {
     #[Route('/', name: 'app_notification_index', methods: ['GET'])]
