@@ -20,13 +20,11 @@ class HomeController extends AbstractController
             'festivals' => $festivalRepository->findAll(),
         ]);
     }
-    #[Route('/{id}', name: 'app_home_festival', methods: ['GET'])]
-    public function use(Festival $festival, FestivalRepository $festivalRepository, Request $request): Response
-    {
-        dd($festivalRepository->find(1)->getNotifications());
-        dd($festivalRepository->find(1)->getEvents());
-        return $this->render('home/use.html.twig', [
-            'festival' => $festival,
-        ]);
-    }
+//    #[Route('/{id}', name: 'app_home_festival', methods: ['GET'])]
+//    public function use(Festival $festival, FestivalRepository $festivalRepository, Request $request): Response
+//    {
+//        return $this->render('home/use.html.twig', [
+//            'festival' => $festival,
+//        ]);
+//    }
 }
