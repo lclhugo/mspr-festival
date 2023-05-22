@@ -89,7 +89,13 @@
         var userMarker = new google.maps.Marker({
             position: new google.maps.LatLng(userLat, userLng),
             map: map,
-            title: "Your Location"
+            title: "Your Location",
+            icon: {
+            url: "{{asset('images/user.svg')}}", 
+            scaledSize: new google.maps.Size(25, 25), 
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(0, 0)
+            }
         });
     }
 
@@ -98,10 +104,10 @@
             position: new google.maps.LatLng({{ location.latitude }}, {{ location.longitude}}),
             map: map,
             icon: {
-            url: "{{asset('images/bars-solid.svg')}}", // URL de l'image
-            scaledSize: new google.maps.Size(50, 50), // taille de l'image
-            origin: new google.maps.Point(0,0), // origine
-            anchor: new google.maps.Point(0, 0) // ancre
+            url: "{{asset('images/restaurant.svg')}}",
+            scaledSize: new google.maps.Size(25, 25),
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(0, 0)
     }
 
         });
