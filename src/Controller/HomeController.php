@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\FestivalRepository;
 use App\Entity\Festival;
+use App\Repository\NotificationRepository;
 use App\Entity\Notification;
 
 class HomeController extends AbstractController
@@ -20,11 +21,12 @@ class HomeController extends AbstractController
             'festivals' => $festivalRepository->findAll(),
         ]);
     }
-//    #[Route('/{id}', name: 'app_home_festival', methods: ['GET'])]
-//    public function use(Festival $festival, FestivalRepository $festivalRepository, Request $request): Response
-//    {
-//        return $this->render('home/use.html.twig', [
-//            'festival' => $festival,
-//        ]);
-//    }
+   #[Route('/{id}', name: 'app_home_festival', methods: ['GET'])]
+   public function use($id, Festival $festival, NotificationRepository $notificationRepository, Request $request): Response
+  {
+       return $this->render('home/use.html.twig', [
+           'festival' => $festival,
+           'notifications' => $notificationRepository->findByFestival($festival),
+       ]);
+   }
 }

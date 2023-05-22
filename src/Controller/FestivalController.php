@@ -54,9 +54,9 @@ class FestivalController extends AbstractController
         dd($festival->getNotifications()); // marche pas
         return $this->render('festival/show.html.twig', [
             'festival' => $festival,
+            'notifications' => $notificationRepository->findAll(),
         ]);
     }
-
 
     #[Route('/{id}/edit', name: 'app_festival_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Festival $festival, FestivalRepository $festivalRepository): Response
