@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Map{% endblock %}
+{% block title %}Map
+{% endblock %}
 
 {% block body %}
-{# <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> #}
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 
 <h1>Map</h1>
 
@@ -12,431 +13,102 @@
 
 <div id="map" style="width: 100%; height: 500px;"></div>
 
-  <h1>Locations</h1>
+<h1>Locations</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for location in locations %}
-            <tr>
-                <td>{{ location.id }}</td>
-                <td>{{ location.name }}</td>
-                <td>{{ location.description }}</td>
-                <td>{{ location.latitude }}</td>
-                <td>{{ location.longitude }}</td>
-                <td>
-                    <a href="{{ path('app_location_show', {'id': location.id}) }}">show</a>
-                    <a href="{{ path('app_location_edit', {'id': location.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Latitude</th>
+			<th>Longitude</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for location in locations %}
+			<tr>
+				<td>{{ location.id }}</td>
+				<td>{{ location.name }}</td>
+				<td>{{ location.description }}</td>
+				<td>{{ location.latitude }}</td>
+				<td>{{ location.longitude }}</td>
+				<td>
+					<a href="{{ path('app_location_show', {'id': location.id}) }}">show</a>
+					<a href="{{ path('app_location_edit', {'id': location.id}) }}">edit</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="6">no records found</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<script src="{{asset('js/mapStyles.js')}}"></script>
 <script>
+ var userLat, userLng;
 
-    {# OBTENIR LA POSITION DE L'UTILISATEUR #}
+    // Obtient la position de l'utilisateur
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(function(position) {
+                userLat = position.coords.latitude;
+                userLng = position.coords.longitude;
+                document.getElementById('latitude').textContent = 'Latitude : ' + userLat;
+                document.getElementById('longitude').textContent = 'Longitude : ' + userLng;
+                // Initialise la carte après avoir obtenu la position de l'utilisateur
+                initMap();
+            });
         } else {
             console.log('La géolocalisation n\'est pas prise en charge par ce navigateur.');
+            // Initialise la carte même si la géolocalisation n'est pas prise en charge
+            initMap();
         }
     }
 
-    function showPosition(position) {
-        document.getElementById('latitude').textContent = 'Latitude : ' + position.coords.latitude;
-        document.getElementById('longitude').textContent = 'Longitude : ' + position.coords.longitude;
-    }
-
     getLocation();
-let positions = [];
-    if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(function(position) {
-        let latitude = position.coords.latitude;
-        let longitude = position.coords.longitude;
-
-        positions.push(latitude, longitude);
-    });
-    } else {
-    console.log('La géolocalisation n\'est pas prise en charge par ce navigateur.');
-}
-
-        console.log(positions);
-
-
 
     function initMap() {
+        var center = {lat: userLat, lng: userLng};
+        
+        if (typeof userLat === "undefined" || typeof userLng === "undefined") {
+            // Utilise la première localisation comme centre si la position de l'utilisateur n'est pas disponible
+            center = new google.maps.LatLng({{ locations[0].latitude }}, {{  locations[0].longitude }});
+        }
+        
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 11,
-            center: new google.maps.LatLng({{ locations[0].latitude }}, {{  locations[0].longitude }}),
-            styles: [
-    {
-        "featureType": "administrative",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": "-100"
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.country",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.province",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.province",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.locality",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.neighborhood",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.land_parcel",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 65
-            },
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.man_made",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": "50"
-            },
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.attraction",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.business",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.government",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.government",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.medical",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.place_of_worship",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.school",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.school",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.sports_complex",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": "-100"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "all",
-        "stylers": [
-            {
-                "lightness": "30"
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "all",
-        "stylers": [
-            {
-                "lightness": "40"
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": -100
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.station",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.station.rail",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": -25
-            },
-            {
-                "saturation": -97
-            },
-            {
-                "color": "#81b1a0"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "lightness": -25
-            },
-            {
-                "saturation": -100
-            }
-        ]
-    }
-]
+            zoom: 15,
+            center: center,
+            styles: mapStyles
         });
+
+        // Place un marqueur à la position de l'utilisateur
+        if (typeof userLat !== "undefined" && typeof userLng !== "undefined") {
+        var userMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(userLat, userLng),
+            map: map,
+            title: "Your Location"
+        });
+    }
 
         {% for location in locations %}
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng({{ location.latitude }}, {{ location.longitude}}),
-            map: map
-        });
-        {% endfor %}
-
-       
+            map: map,
+            icon: {
+            url: "{{asset('images/bars-solid.svg')}}", // URL de l'image
+            scaledSize: new google.maps.Size(50, 50), // taille de l'image
+            origin: new google.maps.Point(0,0), // origine
+            anchor: new google.maps.Point(0, 0) // ancre
     }
 
-    google.maps.event.addDomListener(window, 'load', initMap);
-</script>
+        });
+        {% endfor %}
+    }
 
-{% endblock %}
+    google.maps.event.addDomListener(window, 'load', getLocation);
+</script>
+	
+	{% endblock %}
