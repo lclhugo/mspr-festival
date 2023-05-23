@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/location/category')]
+#[Route('/admin/location/category')]
 class LocationCategoryController extends AbstractController
 {
     #[Route('/', name: 'app_location_category_index', methods: ['GET'])]

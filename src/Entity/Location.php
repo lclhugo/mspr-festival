@@ -22,7 +22,7 @@ class Location
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'locations')]
-    private ?LocationCategory $categoryId = null;
+    private ?LocationCategory $category = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $latitude = null;
@@ -67,14 +67,14 @@ class Location
         return $this;
     }
 
-    public function getCategoryId(): ?LocationCategory
+    public function getCategory(): ?LocationCategory
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
-    public function setCategoryId(?LocationCategory $categoryId): self
+    public function setCategory(?LocationCategory $categoryId): self
     {
-        $this->categoryId = $categoryId;
+        $this->category = $categoryId;
 
         return $this;
     }
@@ -125,7 +125,7 @@ class Location
     {
         if ($this->events->removeElement($event)) {
             // set the owning side to null (unless already changed)
-            if ($event->getLocationId() === $this) {
+            if ($event->getLocation() === $this) {
                 $event->setLocationId(null);
             }
         }

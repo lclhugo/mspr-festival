@@ -22,8 +22,8 @@ class Notification
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'notifications')]
-    private ?Festival $festivalId = null;
+    #[ORM\ManyToOne(targetEntity: Festival::class, inversedBy: 'notifications')]
+    private ?Festival $festival = null;
 
     #[ORM\Column]
     private ?bool $important = null;
@@ -57,14 +57,14 @@ class Notification
         return $this;
     }
 
-    public function getFestivalId(): ?Festival
+    public function getFestival(): ?Festival
     {
-        return $this->festivalId;
+        return $this->festival;
     }
 
-    public function setFestivalId(?Festival $festivalId): self
+    public function setFestival(?Festival $festival): self
     {
-        $this->festivalId = $festivalId;
+        $this->festival = $festival;
 
         return $this;
     }

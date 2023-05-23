@@ -5,12 +5,13 @@ namespace App\Controller;
 use App\Entity\Festival;
 use App\Form\FestivalType;
 use App\Repository\FestivalRepository;
+use App\Repository\NotificationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/festival')]
+#[Route('/admin/festival')]
 class FestivalController extends AbstractController
 {
     #[Route('/', name: 'app_festival_index', methods: ['GET'])]
@@ -47,10 +48,11 @@ class FestivalController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_festival_show', methods: ['GET'])]
-    public function show(Festival $festival): Response
+    public function show(Festival $festival, NotificationRepository $notificationRepository): Response
     {
         return $this->render('festival/show.html.twig', [
             'festival' => $festival,
+            'notifications' => $notificationRepository->findAll(),
         ]);
     }
 

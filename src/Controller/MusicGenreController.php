@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/music/genre')]
+#[Route('/admin/music/genre')]
 class MusicGenreController extends AbstractController
 {
     #[Route('/', name: 'app_music_genre_index', methods: ['GET'])]
