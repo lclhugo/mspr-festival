@@ -41,4 +41,5 @@ class HomeController extends AbstractController
            'locations' => $locationRepository->findAll(),
        ]);
    }
+
 }
