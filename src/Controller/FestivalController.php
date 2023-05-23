@@ -50,8 +50,6 @@ class FestivalController extends AbstractController
     #[Route('/{id}', name: 'app_festival_show', methods: ['GET'])]
     public function show(Festival $festival, NotificationRepository $notificationRepository): Response
     {
-        dd($notificationRepository->findByFestivalId($festival)); // marche
-        dd($festival->getNotifications()); // marche pas
         return $this->render('festival/show.html.twig', [
             'festival' => $festival,
             'notifications' => $notificationRepository->findAll(),
