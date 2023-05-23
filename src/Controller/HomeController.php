@@ -32,12 +32,12 @@ class HomeController extends AbstractController
         ]);
     }
   
-   #[Route('/{id}', name: 'app_home_festival', methods: ['GET'])]
-   public function use($id, Festival $festival, NotificationRepository $notificationRepository, Request $request): Response
-  {
-       return $this->render('home/use.html.twig', [
-           'festival' => $festival,
-           'notifications' => $notificationRepository->findByFestival($festival),
-       ]);
-   }
+//   #[Route('/{id}', name: 'app_home_festival', methods: ['GET'])]
+//   public function use($id, Festival $festival, NotificationRepository $notificationRepository, Request $request): Response
+//  {
+//       return $this->render('home/use.html.twig', [
+//           'festival' => $festival,
+//           'notifications' => $notificationRepository->findByFestival($festival),
+//       ]);
+//   }
 }
