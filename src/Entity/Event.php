@@ -18,7 +18,7 @@ class Event
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
-    private ?Artist $artistId = null;
+    private ?Artist $artist = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $startDate = null;
@@ -30,10 +30,10 @@ class Event
     private ?Festival $festival = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
-    private ?EventCategory $categoryId = null;
+    private ?EventCategory $category = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
-    private ?Location $locationId = null;
+    private ?Location $location = null;
 
     public function getId(): ?int
     {
@@ -52,14 +52,14 @@ class Event
         return $this;
     }
 
-    public function getArtistId(): ?Artist
+    public function getArtist(): ?Artist
     {
-        return $this->artistId;
+        return $this->artist;
     }
 
     public function setArtistId(?Artist $artistId): self
     {
-        $this->artistId = $artistId;
+        $this->artist = $artistId;
 
         return $this;
     }
@@ -100,26 +100,26 @@ class Event
         return $this;
     }
 
-    public function getCategoryId(): ?EventCategory
+    public function getCategory(): ?EventCategory
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
-    public function setCategoryId(?EventCategory $categoryId): self
+    public function setCategory(?EventCategory $categoryId): self
     {
-        $this->categoryId = $categoryId;
+        $this->category = $categoryId;
 
         return $this;
     }
 
-    public function getLocationId(): ?Location
+    public function getLocation(): ?Location
     {
-        return $this->locationId;
+        return $this->location;
     }
 
     public function setLocationId(?Location $locationId): self
     {
-        $this->locationId = $locationId;
+        $this->location = $locationId;
 
         return $this;
     }
