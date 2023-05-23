@@ -20,18 +20,9 @@
 
         <div class="mb-3">
             You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
-        <div>
-            <a href="{{ path('app_artist_index') }}">Voir Artiste</a>
-            <a href="{{ path('app_event_category_index') }}">Voir catégorie event</a>
-            {# <a href="{{ path('app_event_index') }}">Festival</a> #}
-            <a href="{{ path('app_festival_index') }}">Voir festival</a>
-            <a href="{{ path('app_location_category_index') }}">Voir catégorie location</a>
-            <a href="{{ path('app_location_index') }}">Voir location</a>
-            <a href="{{ path('app_music_genre_index') }}">Voir genre musicale</a>
-            <a href="{{ path('app_notification_index') }}">Voir notifiacations</a>
-
         </div>
 
-        </div>
-
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}">Page admin</div>
+        {% endif %}
 {% endblock %}
