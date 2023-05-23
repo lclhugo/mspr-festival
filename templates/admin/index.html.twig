@@ -8,7 +8,138 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-        <div class="example-wrapper">
-         <h1> Choisissez votre festival : </h1>
+    {# <div class="example-wrapper">
+        <h1> Choisissez votre festival : </h1> #}
 
+    <div class="example-wrapper">
+        <h1 class="">Bienvenue sur la page administrateur</h1>
+        Choisissez parmis les éléments ci-dessous celui que vous voulez modifier et laissez vous guider.
 
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card m-2 p-2">
+                    <h2 class="border-2">
+                        Artistes</h2>
+                    <a href="{{path('app_artist_index')}}" class="btn ">
+                        <div class="btn btn-primary ">
+                            Accéder à l'index des artistes
+                        </div>
+                    </a>
+                    <a href="{{path('app_artist_new')}}" class="btn ">
+                        <div class="btn btn-secondary ">
+                            Créer un nouvel artiste
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card m-2 p-2">
+                    <h2 class="border-2">
+                        Evènements</h2>
+                    {# <a href="{{path('app_event_index')}}" class="btn "> #}
+                        <div class="btn btn-primary ">
+                            Accéder à l'index des évènements
+                        </div>
+                    </a>
+                    {# <a href="{{path('app_event_new')}}" class="btn "> #}
+                        <div class="btn btn-secondary ">
+                            Créer un nouvel évènement
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card m-2 p-2">
+                    <h2 class="border-2">
+                        Festival</h2>
+                    <a href="{{path('app_festival_index')}}" class="btn ">
+                        <div class="btn btn-primary ">
+                            Accéder à l'index des Festivals
+                        </div>
+                    </a>
+                    <a href="{{path('app_festival_new')}}" class="btn ">
+                        <div class="btn btn-secondary ">
+                            Créer un nouveau Festival
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card m-2 p-2">
+                    <h2 class="border-2">
+                        Lieux</h2>
+                    <a href="{{path('app_location_index')}}" class="btn ">
+                        <div class="btn btn-primary ">
+                            Accéder à l'index des lieux
+                        </div>
+                    </a>
+                    <a href="{{path('app_location_new')}}" class="btn ">
+                        <div class="btn btn-secondary ">
+                            Créer un nouveau lieu
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 ">
+                <div class="card m-2 p-2">
+
+                    <h2 class="border-2">
+                        Notifications</h2>
+                    <a href="{{path('app_notification_index')}}" class="btn ">
+                        <div class="btn btn-primary ">
+                            Accéder à l'index des notifications
+                        </div>
+                    </a>
+                    <a href="{{path('app_notification_new')}}" class="btn ">
+                        <div class="btn btn-secondary ">
+                            Créer une nouvelle notification
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card m-2 p-2">
+                    <h2 class="border-2">
+                        Genre musical</h2>
+                    <a href="{{path('app_music_genre_index')}}" class="btn ">
+                        <div class="btn btn-primary ">
+                            Accéder à l'index des genres musicaux
+                        </div>
+                    </a>
+                    <a href="{{path('app_music_genre_new')}}" class="btn ">
+                        <div class="btn btn-secondary ">
+                            Créer un nouveau genre musical
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card m-2 p-2">
+                    <h2 class="border-2">
+                        type de lieux</h2>
+                    <a href="{{path('app_location_category_index')}}" class="btn ">
+                        <div class="btn btn-primary ">
+                            Accéder à l'index des type de lieux
+                        </div>
+                    </a>
+                    <a href="{{path('app_location_category_new')}}" class="btn ">
+                        <div class="btn btn-secondary ">
+                            Créer un nouveau type de lieux
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="card m-2 p-2">
+                    <h2 class="border-2">
+                        type d'évènement</h2>
+                    <a href="{{path('app_event_category_index')}}" class="btn ">
+                        <div class="btn btn-primary ">
+                            Accéder à l'index des types d'évènenement
+                        </div>
+                    </a>
+                    <a href="{{path('app_event_category_new')}}" class="btn ">
+                        <div class="btn btn-secondary ">
+                            Créer un nouveau type d'évènenement
+                        </div>
+                    </a>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}
