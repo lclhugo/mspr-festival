@@ -54,6 +54,7 @@ class FestivalController extends AbstractController
         dd($festival->getNotifications()); // marche pas
         return $this->render('festival/show.html.twig', [
             'festival' => $festival,
+            'notifications' => $notificationRepository->findAll(),
         ]);
     }
 

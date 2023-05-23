@@ -9,13 +9,13 @@
 </style>
 
         <div class="example-wrapper">
-            <h1>Hello {{ controller_name }}!</h1>
+            <h1>Bienvenue</h1>
 
-            This friendly message is coming from:
-            <ul>
-                <li>Your controller at <code><a href="{{ 'C:/Users/hanil/OneDrive/Bureau/mspr-festival/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-                <li>Your template at <code><a href="{{ 'C:/Users/hanil/OneDrive/Bureau/mspr-festival/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-            </ul>
+          Choisissez votre festival : 
+            
+             {% for festival in festivals %}
+         <div><a href="{{ path('app_home_festival', {'id': festival.id}) }}">{{festival.name}}</a></div>
+         {% endfor %}
         </div>
 
         <div class="mb-3">
