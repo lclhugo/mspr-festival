@@ -35,7 +35,7 @@ class HomeController extends AbstractController
     #[Route('/festival/{id}', name: 'app_festival', methods: ['GET'])]
     public function show(Festival $festival, NotificationRepository $notificationRepository, FestivalRepository $festivalRepository, LocationRepository $locationRepository): Response
     {
-        return $this->render('home/user.html.twig', [
+        return $this->render('home/use.html.twig', [
             'festival' => $festival,
             'notifications' => $notificationRepository->findAll(),
             'locations' => $locationRepository->findAll(),
