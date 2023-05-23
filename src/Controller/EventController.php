@@ -21,9 +21,8 @@ class EventController extends AbstractController
     {
 
         return $this->render('event/index.html.twig', [
-            'events' => $eventRepository->findBy(['festivalId' => $festivalId]),
+            'events' => $eventRepository->findBy(['festival' => $festivalId]),
             'festival' => $festivalRepository->find($festivalId),
-            'festivalId' => $festivalId
         ]);
     }
 
@@ -55,7 +54,6 @@ class EventController extends AbstractController
     {
         return $this->render('event/show.html.twig', [
             'event' => $event,
-            'festivalId' => $festivalId,
             'festival' => $festivalRepository->find($festivalId)
         ]);
     }
@@ -71,13 +69,12 @@ class EventController extends AbstractController
             $event->setFestival($festival);
             $eventRepository->save($event, true);
 
-            return $this->redirectToRoute('app_event_index', ['festivalId' => $festivalId], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_event_index', ['festival' => $festivalId], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('event/edit.html.twig', [
             'event' => $event,
             'form' => $form,
-            'festivalId' => $festivalId,
             'festival' => $festivalRepository->find($festivalId)
         ]);
     }

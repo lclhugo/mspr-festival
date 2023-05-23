@@ -28,7 +28,7 @@ class EventType extends AbstractType
                 'attr' => ['min' => date('Y-m-d')],
                 'label' => 'Date de fin',
             ])
-            ->add('artistId', EntityType::class, [
+            ->add('artist', EntityType::class, [
                 'class' => 'App\Entity\Artist',
                 'choice_label' => 'name',
                 'label' => 'Artiste',
@@ -38,12 +38,12 @@ class EventType extends AbstractType
 //                'choice_label' => 'name',
 //                'label' => 'Festival',
 //            ])
-            ->add('categoryId', EntityType::class, [
+            ->add('category', EntityType::class, [
                 'class' => 'App\Entity\EventCategory',
                 'choice_label' => 'name',
                 'label' => 'Catégorie',
             ])
-            ->add('locationId', EntityType::class, [
+            ->add('location', EntityType::class, [
                 'class' => 'App\Entity\Location',
                 'choice_label' => 'name',
                 'label' => 'Lieu',
