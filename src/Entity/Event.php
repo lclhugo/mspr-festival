@@ -27,7 +27,7 @@ class Event
     private ?\DateTimeInterface $endDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
-    private ?Festival $festivalId = null;
+    private ?Festival $festival = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
     private ?EventCategory $categoryId = null;
@@ -88,14 +88,14 @@ class Event
         return $this;
     }
 
-    public function getFestivalId(): ?Festival
+    public function getFestival(): ?Festival
     {
-        return $this->festivalId;
+        return $this->festival;
     }
 
-    public function setFestivalId(?Festival $festivalId): self
+    public function setFestival(?Festival $festival): self
     {
-        $this->festivalId = $festivalId;
+        $this->festival = $festival;
 
         return $this;
     }

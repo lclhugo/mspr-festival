@@ -33,11 +33,11 @@ class EventType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Artiste',
             ])
-            ->add('festivalId', EntityType::class, [
-                'class' => 'App\Entity\Festival',
-                'choice_label' => 'name',
-                'label' => 'Festival',
-            ])
+//            ->add('festivalId', EntityType::class, [
+//                'class' => 'App\Entity\Festival',
+//                'choice_label' => 'name',
+//                'label' => 'Festival',
+//            ])
             ->add('categoryId', EntityType::class, [
                 'class' => 'App\Entity\EventCategory',
                 'choice_label' => 'name',
