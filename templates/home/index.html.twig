@@ -14,7 +14,7 @@
           Choisissez votre festival : 
             
              {% for festival in festivals %}
-         <div><a href="{{ path('app_home', {'id': festival.id}) }}">{{festival.name}}</a></div>
+         <div><a href="{{ path('app_home_festival', {'id': festival.id}) }}">{{festival.name}}</a></div>
          {% endfor %}
         </div>
 
@@ -22,4 +22,7 @@
             You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
 
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}">Page admin</div>
+        {% endif %}
 {% endblock %}

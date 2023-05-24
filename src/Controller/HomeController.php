@@ -33,6 +33,7 @@ class HomeController extends AbstractController
         ]);
     }
 
+
     #[Route('/festival/{id}', name: 'app_festival', methods: ['GET'])]
     public function show(Festival $festival, EventRepository $eventRepository, NotificationRepository $notificationRepository, FestivalRepository $festivalRepository, LocationRepository $locationRepository): Response
     {
@@ -43,7 +44,14 @@ class HomeController extends AbstractController
             'locations' => $locationRepository->findAll(),
         ]);
     }
-
-
+   /*  #[Route('/{id}', name: 'app_home_festival', methods: ['GET'])]
+    public function use($id, Festival $festival, NotificationRepository $notificationRepository, Request $request): Response
+   {
+        return $this->render('home/use.html.twig', [
+            'festival' => $festival,
+            'notifications' => $notificationRepository->findByFestival($festival),
+        ]);
+    }
+ */
 
 }
