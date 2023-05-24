@@ -11,13 +11,29 @@
 
 <div class="w-full text-center">
     <h1 class="text-2xl font-semibold text-sky-900 border-b-2 border-sky-600 uppercase"> {{festival.name}} </h1>
-    <section class="bg-red-400 font-medium text-lg h-12 text-white d-flex justify-center items-center border-b-2 border-sky-600">
-        {% for notification in notifications %}
+    <section class="bg-red-400 font-medium text-lg h-14 text-white d-flex justify-center items-center border-b-2 border-sky-600">
+      {#   {% for notification in notifications %}
             {% if notification.important %}
                 <div>{{notification.content}}
                 </div>
             {% endif %}
+        {% endfor %} #}
+        <div id="default-carousel" class="relative w-full" data-carousel="slide">
+    <!-- Carousel wrapper -->
+    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+      {% for notification in notifications %}
+            {% if notification.important %}
+         <!-- Item 1 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+<span>{{notification.content}} </span>
+{#             <img src="https://www.lelavandier.fr/854-thickbox_default/saucisse-tradition-sel-et-poivre-fins.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+ #}        </div>
+         {% endif %}
         {% endfor %}
+        <!-- Item 2 -->
+       {#  <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-2.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div> #}
     </section>
     <section class="border-b-2 border-sky-600 h-24 d-flex flex-col justify-center items-center">
         <h2 class="uppercase mb-0.5"> Programme du jour : </h2>
