@@ -11,6 +11,7 @@ use App\Repository\FestivalRepository;
 use App\Entity\Festival;
 use App\Repository\NotificationRepository;
 use App\Entity\Notification;
+use App\Repository\EventRepository;
 
 class HomeController extends AbstractController
 {
@@ -32,12 +33,14 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/festival/{id}', name: 'app_home_festival', methods: ['GET'])]
-    public function show(Festival $festival, NotificationRepository $notificationRepository, FestivalRepository $festivalRepository, LocationRepository $locationRepository): Response
+
+    #[Route('/festival/{id}', name: 'app_festival', methods: ['GET'])]
+    public function show(Festival $festival, EventRepository $eventRepository, NotificationRepository $notificationRepository, FestivalRepository $festivalRepository, LocationRepository $locationRepository): Response
     {
         return $this->render('home/use.html.twig', [
             'festival' => $festival,
-            'notifications' => $notificationRepository->findByFestival($festival),
+            'events' => $eventRepository->findBy(['festival' => $festival]),
+            'notifications' => $notificationRepository->findAll(),
             'locations' => $locationRepository->findAll(),
         ]);
     }

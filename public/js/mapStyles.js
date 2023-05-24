@@ -1,10 +1,10 @@
 var mapStyles = [
     {
-        "featureType": "administrative.country",
-        "elementType": "geometry",
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
         "stylers": [
             {
-                "visibility": "off"
+                "color": "#444444"
             }
         ]
     },
@@ -13,16 +13,7 @@ var mapStyles = [
         "elementType": "all",
         "stylers": [
             {
-                "hue": "#FFBB00"
-            },
-            {
-                "saturation": 43.400000000000006
-            },
-            {
-                "lightness": 37.599999999999994
-            },
-            {
-                "gamma": 1
+                "color": "#f2f2f2"
             }
         ]
     },
@@ -31,25 +22,19 @@ var mapStyles = [
         "elementType": "all",
         "stylers": [
             {
-                "hue": "#00FF6A"
-            },
-            {
-                "saturation": -1.0989010989011234
-            },
-            {
-                "lightness": 11.200000000000017
-            },
-            {
-                "gamma": 1
+                "visibility": "off"
             }
         ]
     },
     {
-        "featureType": "poi.attraction",
-        "elementType": "geometry",
+        "featureType": "road",
+        "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
+                "saturation": -100
+            },
+            {
+                "lightness": 45
             }
         ]
     },
@@ -58,52 +43,25 @@ var mapStyles = [
         "elementType": "all",
         "stylers": [
             {
-                "hue": "#FFC200"
-            },
-            {
-                "saturation": -61.8
-            },
-            {
-                "lightness": 45.599999999999994
-            },
-            {
-                "gamma": 1
+                "visibility": "simplified"
             }
         ]
     },
     {
         "featureType": "road.arterial",
-        "elementType": "all",
+        "elementType": "labels.icon",
         "stylers": [
             {
-                "hue": "#FF0300"
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 51.19999999999999
-            },
-            {
-                "gamma": 1
+                "visibility": "off"
             }
         ]
     },
     {
-        "featureType": "road.local",
+        "featureType": "transit",
         "elementType": "all",
         "stylers": [
             {
-                "hue": "#FF0300"
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 52
-            },
-            {
-                "gamma": 1
+                "visibility": "off"
             }
         ]
     },
@@ -112,16 +70,10 @@ var mapStyles = [
         "elementType": "all",
         "stylers": [
             {
-                "hue": "#0078FF"
+                "color": "#aad2e3"
             },
             {
-                "saturation": -13.200000000000003
-            },
-            {
-                "lightness": 2.4000000000000057
-            },
-            {
-                "gamma": 1
+                "visibility": "on"
             }
         ]
     }
