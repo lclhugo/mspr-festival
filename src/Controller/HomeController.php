@@ -40,7 +40,7 @@ class HomeController extends AbstractController
         return $this->render('home/use.html.twig', [
             'festival' => $festival,
             'events' => $eventRepository->findBy(['festival' => $festival]),
-            'notifications' => $notificationRepository->findAll(),
+            'notifications' => $notificationRepository->findByFestival($festival),
             'locations' => $locationRepository->findAll(),
         ]);
     }
