@@ -14,7 +14,11 @@
           Choisissez votre festival : 
             
              {% for festival in festivals %}
-         <div><a href="{{ path('app_festival', {'id': festival.id}) }}">{{festival.name}}</a></div>
+         <div>
+         <button type="button" class='btn'>
+         <a href="{{ path('app_festival', {'id': festival.id}) }}">{{festival.name}}</a>
+         </button>
+         </div>
          {% endfor %}
         </div>
 
