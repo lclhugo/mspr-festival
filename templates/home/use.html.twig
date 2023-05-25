@@ -19,7 +19,9 @@
 					{% for key, notification in notifications %}
 						{% if notification.important %}
 							<div class="hidden duration-700 ease-in-out" id="{{key}}" data-carousel-item>
-								<span data-modal-target="defaultModal{{key}}" data-modal-toggle="defaultModal{{key}}">
+								<span class="cursor-pointer"
+								data-modal-target="defaultModal{{key}}"
+								 data-modal-toggle="defaultModal{{key}}">
 									{{notification.title}}
 
 								</span>
