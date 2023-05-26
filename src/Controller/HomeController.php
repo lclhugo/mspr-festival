@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\LocationRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,6 +52,15 @@ class HomeController extends AbstractController
             'events' => $events,
             'notifications' => $notificationRepository->findByFestival($festival),
             'locations' => $locationRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/festival/{festivalId}/event/{id}', name: 'app_event_show', methods: ['GET'])]
+    public function showEvent($festivalId, Event $event, EventRepository $eventRepository, FestivalRepository $festivalRepository): Response
+    {
+        return $this->render('event/show.html.twig', [
+            'event' => $event,
+            'festival' => $festivalRepository->find($festivalId)
         ]);
     }
    /*  #[Route('/{id}', name: 'app_home_festival', methods: ['GET'])]

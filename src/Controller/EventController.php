@@ -49,14 +49,7 @@ class EventController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_event_show', methods: ['GET'])]
-    public function show($festivalId, Event $event, EventRepository $eventRepository, FestivalRepository $festivalRepository): Response
-    {
-        return $this->render('event/show.html.twig', [
-            'event' => $event,
-            'festival' => $festivalRepository->find($festivalId)
-        ]);
-    }
+
 
     #[Route('/{id}/edit', name: 'app_event_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Event $event, EventRepository $eventRepository, FestivalRepository $festivalRepository, $festivalId): Response
