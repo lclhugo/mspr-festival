@@ -19,25 +19,23 @@ class EventType extends AbstractType
                 'label' => 'Nom',
             ])
             ->add('startDate', DateTimeType::class, [
-                'label' => 'Date de début',
+                'label' => 'Date de début* :',
                 'widget' => 'single_text',
-                'attr' => ['min' => date('Y-m-d')],
+                'attr' => ['min' => (new \DateTime())->format('D-m-Y H:i'),
+                    'class' => 'form-control',
+                ],
             ])
             ->add('endDate', DateTimeType::class, [
                 'widget' => 'single_text',
-                'attr' => ['min' => date('Y-m-d')],
-                'label' => 'Date de fin',
+                'label' => 'Date de fin* :',
+                'attr' => ['min' => (new \DateTime())->modify('+1 day')->format('D-m-Y H:i'),
+                    'class' => 'form-control',],
             ])
             ->add('artist', EntityType::class, [
                 'class' => 'App\Entity\Artist',
                 'choice_label' => 'name',
                 'label' => 'Artiste',
             ])
-//            ->add('festivalId', EntityType::class, [
-//                'class' => 'App\Entity\Festival',
-//                'choice_label' => 'name',
-//                'label' => 'Festival',
-//            ])
             ->add('category', EntityType::class, [
                 'class' => 'App\Entity\EventCategory',
                 'choice_label' => 'name',

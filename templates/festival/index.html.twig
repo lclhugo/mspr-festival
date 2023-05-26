@@ -3,9 +3,12 @@
 {% block title %}Festival index{% endblock %}
 
 {% block body %}
-    <div class="container mx-auto">
-
+<div class="container mx-auto">
     <h1 class="text-3xl font-bold mb-2 mt-2 text-center">All Festivals</h1>
+
+    <div class="flex justify-start mb-8">
+        <a class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_new') }}">Créer un festival</a>
+    </div>
 
     {% for message in app.flashes('festivalError') %}
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -19,11 +22,9 @@
         </div>
     {% endfor %}
 
-
-
-    <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div class="w-90 mx-auto mb-8">
+        <table class="w-full text-sm text-left bg-gray-700 text-gray-400 border border-gray-700">
+            <thead class="text-xs uppercase bg-gray-700 text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">Nom</th>
                 <th scope="col" class="px-6 py-3">Date de début</th>
@@ -32,31 +33,29 @@
                 <th scope="col" class="px-6 py-3">Organisateur</th>
                 <th scope="col" class="px-6 py-3">Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for festival in festivals %}
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ festival.name }}</th>
-                <td>{{ festival.startDate ? festival.startDate|date('Y-m-d H:i') : '' }}</td>
-                <td>{{ festival.endDate ? festival.endDate|date('Y-m-d H:i') : '' }}</td>
-{#                only show 50 first characters of description#}
-                <td>{{ festival.description ? festival.description|slice(0, 100) ~ '...' : '' }}</td>
-                <td>{{ festival.organizer }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_show', {'id': festival.id}) }}">Voir</a>
-                    <a class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_edit', {'id': festival.id}) }}">Editer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">Aucun festival</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-        <a class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline float-right" href="{{ path('app_festival_new') }}">Ajouter</a>
-    </div>
+            </thead>
+            <tbody>
+            {% for festival in festivals %}
+                <tr class="border-b bg-gray-800 border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">{{ festival.name }}</th>
+                    <td>{{ festival.startDate ? festival.startDate|date('d-m-Y H:i') : '' }}</td>
+                    <td>{{ festival.endDate ? festival.endDate|date('d-m-Y H:i') : '' }}</td>
+                    {# only show 50 first characters of description #}
+                    <td>{{ festival.description ? festival.description|slice(0, 100) ~ '...' : '' }}</td>
+                    <td>{{ festival.organizer }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_show', {'id': festival.id}) }}">Voir</a>
+                        <a class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_edit', {'id': festival.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun festival</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 
-
+</div>
 {% endblock %}

@@ -32,14 +32,14 @@ class FestivalType extends AbstractType
             ->add('startDate', DateTimeType::class, [
                 'label' => 'Date de début* :',
                 'widget' => 'single_text',
-                'attr' => ['min' => (new \DateTime())->format('Y-m-d H:i'),
+                'attr' => ['min' => (new \DateTime())->format('D-m-Y H:i'),
                     'class' => 'form-control',
                 ],
             ])
             ->add('endDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'label' => 'Date de fin* :',
-                'attr' => ['min' => (new \DateTime())->modify('+1 day')->format('Y-m-d H:i'),
+                'attr' => ['min' => (new \DateTime())->modify('+1 day')->format('D-m-Y H:i'),
                     'class' => 'form-control',],
             ])
             ->add('description', TextareaType::class, [

@@ -69,7 +69,7 @@ class EventController extends AbstractController
             $event->setFestival($festival);
             $eventRepository->save($event, true);
 
-            return $this->redirectToRoute('app_event_index', ['festival' => $festivalId], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_event_index', ['festivalId' => $festivalId], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('event/edit.html.twig', [
