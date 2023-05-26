@@ -57,9 +57,9 @@ class Event
         return $this->artist;
     }
 
-    public function setArtistId(?Artist $artistId): self
+    public function setArtist(?Artist $artist): self
     {
-        $this->artist = $artistId;
+        $this->artist = $artist;
 
         return $this;
     }
@@ -117,9 +117,9 @@ class Event
         return $this->location;
     }
 
-    public function setLocationId(?Location $locationId): self
+    public function setLocation(?Location $location): self
     {
-        $this->location = $locationId;
+        $this->location = $location;
 
         return $this;
     }

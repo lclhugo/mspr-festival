@@ -17,7 +17,7 @@ class LocationType extends AbstractType
             ->add('description')
             ->add('latitude')
             ->add('longitude')
-            ->add('categoryId', EntityType::class, [
+            ->add('category', EntityType::class, [
                 'class' => 'App\Entity\LocationCategory',
                 'choice_label' => 'name',
             ])

@@ -17,7 +17,9 @@ class ArtistType extends AbstractType
             ->add('description')
             ->add('musicgenres', EntityType::class, [
                 'class' => 'App\Entity\MusicGenre',
-                'choice_label' => 'name',
+                'choice_label' => function ($musicgenre) {
+                return "<strong>{$musicgenre->getName()}</strong>";
+                },
                 'label' => 'Genre musical',
                 'multiple' => true,
                 'expanded' => true,

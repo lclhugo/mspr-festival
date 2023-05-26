@@ -1,4 +1,55 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+        {% for message in app.flashes('eventError') %}
+            <div>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+<div class="relative z-0 w-full mb-6 group">
+    {{ form_errors(form.name, class='text-red-500') }}
+    {{ form_label(form.name, null, {'label_attr': {'class': 'peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'}}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', 'placeholder': ' '}}) }}
+</div>
+
+<div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-6 group">
+        {{ form_errors(form.startDate, class='text-red-500') }}
+        {{ form_label(form.startDate, null, {'label_attr': {'class': 'peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'}}) }}
+        {{ form_widget(form.startDate, {'attr': {'class': 'block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', 'placeholder': ' '}}) }}
+    </div>
+
+    <div class="relative z-0 w-full mb-6 group">
+        {{ form_errors(form.endDate, class='text-red-500') }}
+        {{ form_label(form.endDate, null, {'label_attr': {'class': 'peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'}}) }}
+        {{ form_widget(form.endDate, {'attr': {'class': 'block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', 'placeholder': ' '}}) }}
+    </div>
+</div>
+
+<div class="relative z-0 w-full mb-6 group">
+    {{ form_errors(form.category, class='text-red-500') }}
+    {{ form_label(form.category, null, {'label_attr': {'class': 'peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'}}) }}
+    {{ form_widget(form.category, {'attr': {'class': 'block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', 'placeholder': ' '}}) }}
+</div>
+
+<div class="relative z-0 w-full mb-6 group">
+    {{ form_errors(form.artist, class='text-red-500') }}
+    {{ form_label(form.artist, null, {'label_attr': {'class': 'peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'}}) }}
+    {{ form_widget(form.artist, {'attr': {'class': 'block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', 'placeholder': ' '}}) }}
+</div>
+
+<div class="relative z-0 w-full mb-6 group">
+    {{ form_errors(form.location, class='text-red-500') }}
+    {{ form_label(form.location, null, {'label_attr': {'class': 'peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'}}) }}
+    {{ form_widget(form.location, {'attr': {'class': 'block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', 'placeholder': ' '}}) }}
+</div>
+
+
+
+<p class="text-sm text-gray-500 dark:text-gray-400">Les champs marqués d'un * sont obligatoires.</p>
+
+
+{# link to go back to the list #}
+<a href="{{ path('app_event_index', {'festivalId': festival.id}) }}" class="mt-6 bg-grayx-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline float-left">Retour à la liste</a>
+<button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline float-right" type="submit">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
