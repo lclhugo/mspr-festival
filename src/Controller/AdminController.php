@@ -9,7 +9,7 @@ use App\Repository\FestivalRepository;
 
 class AdminController extends AbstractController
 {
-    #[Route('/admin', name: 'app_admin')]
+    #[Route('/admin/festival/id', name: 'app_admin')]
     public function index(FestivalRepository $festivalRepository): Response
     {
         return $this->render('admin/index.html.twig', [
