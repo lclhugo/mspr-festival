@@ -38,6 +38,24 @@ class EventRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function EventTimeSlot($date1, $date2, $festival)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT e
+        FROM App\Entity\Event e
+        WHERE e.startDate >= :date1
+        AND  e.startDate < :date2 
+        AND e.festival = :festival
+        '
+        )->setParameter('date1', $date1)
+            ->setParameter('date2', $date2)
+            ->setParameter('festival', $festival);
+
+        return $query->getResult();
+    }
+
 
 //    /**
 //     * @return Event[] Returns an array of Event objects

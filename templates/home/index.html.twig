@@ -14,11 +14,11 @@
           Choisissez votre festival : 
             
              {% for festival in festivals %}
-            <div><a href="{{ path('app_festival', {'id': festival.id}) }}">{{festival.name}}</a></div>
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('app_admin', {'id': festival.id}) }}">Gérer le festival</div>
-            {% endif %}
-
+         <div>
+         <button type="button" class='btn'>
+         <a href="{{ path('app_festival', {'id': festival.id}) }}">{{festival.name}}</a>
+         </button>
+         </div>
          {% endfor %}
         </div>
 

@@ -37,9 +37,18 @@ class HomeController extends AbstractController
     #[Route('/festival/{id}', name: 'app_festival', methods: ['GET'])]
     public function show(Festival $festival, EventRepository $eventRepository, NotificationRepository $notificationRepository, FestivalRepository $festivalRepository, LocationRepository $locationRepository): Response
     {
+        $date1 = new \DateTime;
+        $date1->setTime(0, 0, 0);
+        $date2 = new \DateTime;
+        $date2->modify('+1 day');
+        $date2->setTime(0, 0, 0);
+
+        
+        $events = $eventRepository->EventTimeSlot( $date1 , $date2, $festival  );
+       
         return $this->render('home/use.html.twig', [
             'festival' => $festival,
-            'events' => $eventRepository->findBy(['festival' => $festival]),
+            'events' => $events,
             'notifications' => $notificationRepository->findByFestival($festival),
             'locations' => $locationRepository->findAll(),
         ]);
