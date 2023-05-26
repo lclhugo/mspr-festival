@@ -26,7 +26,5 @@
             You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('app_admin') }}">Page admin</div>
-        {% endif %}
+
 {% endblock %}
