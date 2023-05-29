@@ -23,6 +23,8 @@ class LocationType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => 'App\Entity\LocationCategory',
                 'choice_label' => 'name',
+                'label' => 'Catégorie* :',
+                'required' => true,
             ])
         ;
     }

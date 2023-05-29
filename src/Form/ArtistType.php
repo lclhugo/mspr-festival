@@ -13,8 +13,16 @@ class ArtistType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('description')
+            ->add('name', null, [
+                'label' => 'Nom* :',
+                'required' => true,
+            ])
+            ->add('description', null, [
+                'label' => 'Description',
+                'attr' => [
+                    'rows' => 10,
+                ],
+            ])
             ->add('musicgenres', EntityType::class, [
                 'class' => 'App\Entity\MusicGenre',
                 'choice_label' => 'name',

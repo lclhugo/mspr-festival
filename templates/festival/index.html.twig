@@ -1,13 +1,13 @@
 {% extends 'adminbase.html.twig' %}
 
-{% block title %}Festival index{% endblock %}
+{% block title %}Tous les festivals{% endblock %}
 
 {% block body %}
 <div class="container mx-auto">
-    <h1 class="text-3xl font-bold mb-2 mt-2 text-center">All Festivals</h1>
+    <h1 class="text-3xl font-bold mb-2 mt-2 text-center">Tous les Festivals</h1>
 
     <div class="flex justify-start mb-8">
-        <a class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_new') }}">Créer un festival</a>
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_new') }}">Ajouter un festival</a>
     </div>
 
     {% for message in app.flashes('festivalError') %}
@@ -44,8 +44,8 @@
                     <td>{{ festival.description ? festival.description|slice(0, 100) ~ '...' : '' }}</td>
                     <td>{{ festival.organizer }}</td>
                     <td class="flex justify-center gap-7 py-4 whitespace-nowrap text-right text-sm font-medium align-items-center">
-                        <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_show', {'festivalId': festival.id}) }}">Accéder</a>
-                        <a class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_edit', {'festivalId': festival.id}) }}">Editer</a>
+                        <a class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_show', {'festivalId': festival.id}) }}">Accéder</a>
+                        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_festival_edit', {'festivalId': festival.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
