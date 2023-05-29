@@ -5,24 +5,23 @@
 {% block body %}
 <div class="container mx-auto">
     <h1 class="text-3xl font-bold mb-2 mt-2 text-center">{{ festival.name }}</h1>
-    <h2 class="text-3xl font-bold mb-2 mt-2 text-center">All Events</h2>
+    <h2 class="text-3xl font-bold mb-2 mt-2 text-center">Tous les évènements</h2>
 
     <div class="flex justify-start mb-8">
-        <a class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_event_new', {'festivalId': festival.id}) }}">Create new</a>
+        <a class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_event_new', {'festivalId': festival.id}) }}">Ajouter</a>
     </div>
 
     <div class="w-90 mx-auto mb-8">
         <table class="w-full text-sm text-left bg-gray-700 text-gray-400 border border-gray-700">
             <thead class="text-xs uppercase bg-gray-700 text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">Name</th>
-                <th scope="col" class="px-6 py-3">StartDate</th>
-                <th scope="col" class="px-6 py-3">EndDate</th>
-                <th scope="col" class="px-6 py-3">Category</th>
-                <th scope="col" class="px-6 py-3">Artist</th>
-                <th scope="col" class="px-6 py-3">Location</th>
+                <th scope="col" class="px-6 py-3">Nom</th>
+                <th scope="col" class="px-6 py-3">Date de début</th>
+                <th scope="col" class="px-6 py-3">Date de fin</th>
+                <th scope="col" class="px-6 py-3">Type</th>
+                <th scope="col" class="px-6 py-3">Artiste</th>
+                <th scope="col" class="px-6 py-3">Lieu</th>
                 <th scope="col" class="px-6 py-3">Actions</th>
-
             </tr>
         </thead>
         <tbody>
@@ -35,12 +34,12 @@
                 <td>{{ event.artist.name }}</td>
                 <td>{{ event.location.name }}</td>
                 <td>
-                    <a href="{{ path('app_event_show', {'festivalId': festival.id, 'id': event.id}) }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Show</a>
+{#                    <a href="{{ path('app_event_show', {'festivalId': festival.id, 'id': event.id}) }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Show</a>#}
                     <a href="{{ path('app_event_edit', {'festivalId': festival.id, 'id': event.id}) }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Edit</a>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5" class="text-center py-4">No events found</td>
+                <td colspan="5" class="text-center py-4">Pas d'évènements</td>
             </tr>
         {% endfor %}
         </tbody>

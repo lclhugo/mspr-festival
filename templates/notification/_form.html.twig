@@ -1,4 +1,37 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+      {% for message in app.flashes('notifError') %}
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+
+<div class="relative z-0 w-full mb-6 group">
+    {{ form_errors(form.title, class='text-red-500') }}
+    {{ form_label(form.title, null, {'label_attr': {'class': 'peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'}}) }}
+    {{ form_widget(form.title, {'attr': {'class': 'block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', 'placeholder': ' '}}) }}
+</div>
+
+<div class="relative z-0 w-full mb-6 group">
+    {{ form_errors(form.content, class='text-red-500') }}
+    {{ form_label(form.content, null, {'label_attr': {'class': 'peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'}}) }}
+    {{ form_widget(form.content, {'attr': {'class': 'block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', 'placeholder': ' '}}) }}
+</div>
+
+<div class="relative z-0 mb-6 group flex justify-center gap-3">
+    {{ form_errors(form.important, class='text-red-500') }}
+    {{ form_label(form.important, null, {'label_attr': {'class': "ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"}}) }}
+    {{ form_widget(form.important, {'attr': {'class': "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600", 'placeholder': ' '}})|raw }}
+</div>
+
+
+<p class="text-sm text-gray-500 dark:text-gray-400">Les champs marqués d'un * sont obligatoires.</p>
+
+
+{# link to go back to the list #}
+<a href="{{ path('app_notification_index', {'festivalId': festival.id}) }}"
+   class="mt-6 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline float-left">Retour
+    à la liste</a>
+<button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline float-right"
+        type="submit">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}

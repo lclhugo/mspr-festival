@@ -48,19 +48,19 @@ class FestivalController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_festival_show', methods: ['GET'])]
-    public function show(Festival $festival, NotificationRepository $notificationRepository, FestivalRepository $festivalRepository, LocationRepository $locationRepository): Response
+    #[Route('/{festivalId}', name: 'app_festival_show', methods: ['GET'])]
+    public function show(int $festivalId, FestivalRepository $festivalRepository): Response
     {
-        return $this->render('festival/show.html.twig', [
-            'festival' => $festival,
-            'notifications' => $notificationRepository->findAll(),
-            'locations' => $locationRepository->findAll(),
+        return $this->render('admin/index.html.twig', [
+            'festival' => $festivalRepository->find($festivalId),
+            'festivalId' => $festivalId,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_festival_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Festival $festival, FestivalRepository $festivalRepository): Response
+    #[Route('/{festivalId}/edit', name: 'app_festival_edit', methods: ['GET', 'POST'])]
+    public function edit(int $festivalId, Request $request, FestivalRepository $festivalRepository): Response
     {
+        $festival = $festivalRepository->find($festivalId);
         $form = $this->createForm(FestivalType::class, $festival);
         $form->handleRequest($request);
 
@@ -82,7 +82,7 @@ class FestivalController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_festival_delete', methods: ['POST'])]
+    #[Route('/ {festivalId}', name: 'app_festival_delete', methods: ['POST'])]
     public function delete(Request $request, Festival $festival, FestivalRepository $festivalRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $festival->getId(), $request->request->get('_token'))) {

@@ -1,37 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
-{% block title %}Artist index{% endblock %}
+{% block title %}Tous les Artistes{% endblock %}
 
 {% block body %}
-    <h1>Artist index</h1>
+    <div class="container mx-auto">
+        <div class="flex justify-end">
+            <a href="{{ path('app_artist_new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded">Ajouter</a>
+        </div>
+        <h1 class="text-3xl font-bold text-center">Tous les Artistes</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for artist in artists %}
-            <tr>
-                <td>{{ artist.id }}</td>
-                <td>{{ artist.name }}</td>
-                <td>{{ artist.description }}</td>
-                <td>
-                    <a href="{{ path('app_artist_show', {'id': artist.id}) }}">show</a>
-                    <a href="{{ path('app_artist_edit', {'id': artist.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="flex flex-wrap justify-center mt-3">
+            {% for artist in artists %}
+            <div class="max-w-sm rounded overflow-hidden shadow-lg m-3 bg-gray-700 px-3 py-3">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2 text-center">{{ artist.name }}</div>
+                    </div>
 
-    <a href="{{ path('app_artist_new') }}">Create new</a>
+                <p class="text-gray-300 text-base text-center">{{ artist.description }}</p>
+                <div class="px-6 py-4 flex justify-center gap-1">
+                    {% for genre in artist.musicgenres %}
+                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ genre.name }}</span>
+                    {% endfor %}
+                </div>
+
+
+                <div class="px-6 py-4 flex justify-center gap-3">
+                    <a href="{{ path('app_artist_show', {'id': artist.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Voir</a>
+                    <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Modifier</a>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
+
+
+
