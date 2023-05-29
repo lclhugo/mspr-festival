@@ -11,12 +11,12 @@
 
    <div class="flex flex-wrap justify-center mt-3">
         {% for genre in music_genres %}
-            <div class="max-w-sm rounded overflow-hidden shadow-lg m-3 bg-gray-700 px-3 py-3">
+            <div class="max-w-sm rounded overflow-hidden shadow-lg m-3 bg-gray-700 px-3 py-3 text-center">
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">{{ genre.name }}</div>
                 </div>
                 <div class="px-6 pt-4 pb-2">
-                    <a href="{{ path('app_music_genre_edit', {'id': genre.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                    <a href="{{ path('app_music_genre_edit', {'id': genre.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Modifier</a>
                 </div>
             </div>
         {% else %}
