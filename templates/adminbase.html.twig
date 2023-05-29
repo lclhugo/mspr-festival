@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,24 +10,31 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link rel="icon" href="{{ asset("images/mp.svg") }}">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}" />
 
 </head>
 {% if app.user %}
-    <body class="bg-gray-900 text-white">
+    <body class="bg-gray-900 text-white" id="top">
 
+    {% include 'admin/navbar.html.twig' %}
+    <div class="min-h-screen">
     {% block body %}{% endblock %}
+    </div>
+    {% include 'admin/footer.html.twig' %}
     </body>
 {% else %}
     <body>
 
 
-    <div class="mb-3">
+    <div class="mb-3 min-h-screen">
         Vous devez être inscrit ou connecté pour consulter les pages :
         <a href="{{ path('app_login') }}">Login</a>
         <a href="{{ path('app_register') }}">Signup</a>
     </div>
+
+    {% include 'admin/footer.html.twig' %}
+
     </body>
 {% endif %}
 </html>

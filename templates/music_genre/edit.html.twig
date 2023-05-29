@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Edit MusicGenre{% endblock %}
+{% extends 'adminbase.html.twig' %}
+{% block title %}Editer Genre Musical{% endblock %}
 
 {% block body %}
-    <h1>Edit MusicGenre</h1>
-
-    {{ include('music_genre/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_music_genre_index') }}">back to list</a>
-
-    {{ include('music_genre/_delete_form.html.twig') }}
+    <div class="flex justify-center mt-10">
+        <div class="w-8/12 bg-gray-900 p-6 rounded-lg border border-gray-700">
+            <h1 class="text-3xl font-bold text-center text-white">Editer Genre Musical</h1>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                {{ include('music_genre/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

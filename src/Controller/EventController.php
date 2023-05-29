@@ -17,17 +17,18 @@ class EventController extends AbstractController
 {
     //get all events for a festival id
     #[Route('/', name: 'app_event_index', methods: ['GET'])]
-    public function index($festivalId, EventRepository $eventRepository, FestivalRepository $festivalRepository): Response
+    public function index(int $festivalId, EventRepository $eventRepository, FestivalRepository $festivalRepository): Response
     {
 
         return $this->render('event/index.html.twig', [
             'events' => $eventRepository->findBy(['festival' => $festivalId]),
             'festival' => $festivalRepository->find($festivalId),
+            'festivalId' => $festivalId,
         ]);
     }
 
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
-    public function new($festivalId, Request $request, EventRepository $eventRepository, FestivalRepository $festivalRepository): Response
+    public function new(int $festivalId, Request $request, EventRepository $eventRepository, FestivalRepository $festivalRepository): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
@@ -52,7 +53,7 @@ class EventController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'app_event_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Event $event, EventRepository $eventRepository, FestivalRepository $festivalRepository, $festivalId): Response
+    public function edit(int $festivalId, Request $request, Event $event, EventRepository $eventRepository, FestivalRepository $festivalRepository): Response
     {
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -68,6 +69,7 @@ class EventController extends AbstractController
         return $this->renderForm('event/edit.html.twig', [
             'event' => $event,
             'form' => $form,
+            'festivalId' => $festivalId,
             'festival' => $festivalRepository->find($festivalId)
         ]);
     }

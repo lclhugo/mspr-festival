@@ -1,39 +1,37 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
 {% block title %}Notification index{% endblock %}
 
 {% block body %}
-    <h1>Notification index</h1>
+<div class="container mx-auto">
+    <div class="flex justify-end">
+        <a href="{{ path('app_notification_new', {'festivalId': festival.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">Ajouter une notification</a>
+    </div>
+    <h1 class="text-3xl font-bold text-center">Notifications pour le festival {{ festival.name }}</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Content</th>
-                <th>Date</th>
-                <th>Important</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+
+    <div class="flex flex-wrap mx-4 mt-8 gap-4 justify-center">
         {% for notification in notifications %}
-            <tr>
-                <td>{{ notification.id }}</td>
-                <td>{{ notification.content }}</td>
-                <td>{{ notification.date ? notification.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ notification.important ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_notification_show', {'id': notification.id}) }}">show</a>
-                    <a href="{{ path('app_notification_edit', {'id': notification.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="bg-gray-800 text-white shadow rounded-md p-4">
+                <div class="mb-4">
+                    <div class="font-bold text-lg mb-2">{{ notification.id }}</div>
+                    <div class="text-gray-300">{{ notification.content }}</div>
+                </div>
+                <div class="flex text-sm text-center flex-column gap-3">
+                    <div class="text-gray-400">{{ notification.date ? notification.date|date('d/m/Y H:i') : '' }}</div>
+                    <div class="text-gray-400">Important: {{ notification.important ? 'Yes' : 'No' }}</div>
+                    <div>
+                        <a href="{{ path('app_notification_edit', {'festivalId': notification.festival.id, 'id': notification.id}) }}" class="text-blue-500">Editer</a>
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
+            <div class="bg-gray-800 text-white shadow rounded-md p-4">
+                <p class="text-gray-400">No records found</p>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+    </div>
+</div>
 
-    <a href="{{ path('app_notification_new') }}">Create new</a>
-{% endblock %}
+        {% endblock %}

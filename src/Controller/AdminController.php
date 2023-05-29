@@ -9,12 +9,12 @@ use App\Repository\FestivalRepository;
 
 class AdminController extends AbstractController
 {
-    #[Route('/admin/festival/id', name: 'app_admin')]
-    public function index(FestivalRepository $festivalRepository): Response
-    {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
-            'festivals' => $festivalRepository->findAll(),
-         ]);
-    }
+//    #[Route('/admin/festival/id', name: 'app_admin')]
+//    public function index(FestivalRepository $festivalRepository): Response
+//    {
+//        return $this->render('admin/index.html.twig', [
+//            'controller_name' => 'AdminController',
+//            'festivals' => $festivalRepository->findAll(),
+//         ]);
+//    }
 }
