@@ -90,17 +90,7 @@ class Notification
         $this->date = new \DateTime();
     }
 
-    #[ORM\PrePersist]
-    public function setImportantValue()
-    {
-        $this->important = false;
-    }
 
-    #[ORM\PrePersist]
-    public function setTitleValue()
-    {
-        $this->title = 'Nouvelle notification';
-    }
 
     public function getTitle(): ?string
     {

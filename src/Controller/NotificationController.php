@@ -81,7 +81,7 @@ class NotificationController extends AbstractController
     public function delete(int $festivalId, Request $request, Notification $notification, NotificationRepository $notificationRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$notification->getId(), $request->request->get('_token'))) {
-            $notificationRepository->delete($notification);
+            $notificationRepository->remove($notification, true);
         }
 
         return $this->redirectToRoute('app_notification_index', ['festivalId' => $festivalId], Response::HTTP_SEE_OTHER);

@@ -17,3 +17,7 @@
 #artist_musicgenres label:hover {
   @apply text-gray-600 dark:text-gray-400
 }
+
+select option {
+  @apply text-gray-900 dark:text-gray-900
+}
