@@ -1,5 +1,7 @@
 # FESTOCHE
 
+Projet Symfony fait en cours
+
 # commandes:
 
 installer le projet:
@@ -9,9 +11,12 @@ installer les packages composer
 `composer install`
 
 installer les packages node
-`npm install` ou `yarn install`
+`npm install`
 
-lancer docker pour avoir acces à la BDD
+générer le css 
+`npm run build`
+
+lancer docker pour avoir acces à la BDD et PMA 
 `docker compose up`
 
 lancer le serveur symfony
