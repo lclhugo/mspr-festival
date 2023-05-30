@@ -28,6 +28,9 @@ class Notification
     #[ORM\Column]
     private ?bool $important = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $title = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +88,30 @@ class Notification
     public function setDateValue()
     {
         $this->date = new \DateTime();
+    }
+
+    #[ORM\PrePersist]
+    public function setImportantValue()
+    {
+        $this->important = false;
+    }
+
+    #[ORM\PrePersist]
+    public function setTitleValue()
+    {
+        $this->title = 'Nouvelle notification';
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
     }
 
 }

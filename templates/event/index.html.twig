@@ -1,43 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
-{% block title %}Event index{% endblock %}
+{% block title %}Events{% endblock %}
 
 {% block body %}
-    <h1>Event du festival {{ festival.name }}</h1>
-    <table class="table">
-        <thead>
+<div class="container mx-auto text-center">
+    <a href="{{  path('app_festival_show' , {'festivalId': festival.id}) }}" class="text-3xl font-bold mb-2 mt-2 text-center text-blue-500 hover:text-blue-700"> {{ festival.name }}</a>
+    <h2 class="text-3xl font-bold mb-2 mt-2 text-center">Tous les évènements</h2>
+
+    <div class="flex justify-start mb-8">
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ path('app_event_new', {'festivalId': festival.id}) }}">Ajouter</a>
+    </div>
+
+    <div class="w-90 mx-auto mb-8">
+        <table class="w-full text-sm text-left bg-gray-700 text-gray-400 border border-gray-700">
+            <thead class="text-xs uppercase bg-gray-700 text-gray-400">
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>StartDate</th>
-                <th>EndDate</th>
-                <th>actions</th>
+                <th scope="col" class="px-6 py-3">Nom</th>
+                <th scope="col" class="px-6 py-3">Date de début</th>
+                <th scope="col" class="px-6 py-3">Date de fin</th>
+                <th scope="col" class="px-6 py-3">Type</th>
+                <th scope="col" class="px-6 py-3">Artiste</th>
+                <th scope="col" class="px-6 py-3">Lieu</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for event in events %}
-            <tr>
-                <td>{{ event.id }}</td>
-                <td>{{ event.name }}</td>
-                <td>{{ event.startDate ? event.startDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ event.endDate ? event.endDate|date('Y-m-d H:i:s') : '' }}</td>
+            <tr class="border-b bg-gray-800 border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">{{ event.name }}</th>
+                <td>{{ event.startDate|date('d-m-Y H:i') }}</td>
+                <td>{{ event.endDate|date('d-m-Y H:i') }}</td>
+                <td>{{ event.category.name }}</td>
+                <td>{{ event.artist.name }}</td>
+                <td>{{ event.location.name }}</td>
                 <td>
-                    <a class="btn btn-primary"  href="{{ path('app_event_show', {'festivalId': festival.id, 'id': event.id}) }}">show</a>
-                    <a class="btn btn-primary"  href="{{ path('app_event_edit', {'festivalId': festival.id, 'id': event.id}) }}">edit</a>
-                </td>
+{#                    <a href="{{ path('app_event_show', {'festivalId': festival.id, 'id': event.id}) }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Show</a>#}
+                    <a href="{{ path('app_event_edit', {'festivalId': festival.id, 'id': event.id}) }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Modifier</a>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5" class="text-center py-4">Pas d'évènements</td>
             </tr>
         {% endfor %}
         </tbody>
-
     </table>
-
- <a href="{{ path('app_event_new', {'festivalId': festival.id}) }}">Create new</a>
-
-
+    </div>
+</div>
 {% endblock %}
+
 
 

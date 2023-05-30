@@ -1,35 +1,30 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
-{% block title %}MusicGenre index{% endblock %}
+{% block title %}Genres Musicaux{% endblock %}
 
 {% block body %}
-    <h1>MusicGenre index</h1>
+    <div class="container mx-auto">
+        <div class="flex justify-end">
+            <a href="{{ path('app_music_genre_new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded">Ajouter</a>
+        </div>
+    <h1 class="text-3xl font-bold text-center">Genres Musicaux</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for music_genre in music_genres %}
-            <tr>
-                <td>{{ music_genre.id }}</td>
-                <td>{{ music_genre.name }}</td>
-                <td>
-                    <a href="{{ path('app_music_genre_show', {'id': music_genre.id}) }}">show</a>
-                    <a href="{{ path('app_music_genre_edit', {'id': music_genre.id}) }}">edit</a>
-                </td>
-            </tr>
+   <div class="flex flex-wrap justify-center mt-3">
+        {% for genre in music_genres %}
+            <div class="max-w-sm rounded overflow-hidden shadow-lg m-3 bg-gray-700 px-3 py-3 text-center">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">{{ genre.name }}</div>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <a href="{{ path('app_music_genre_edit', {'id': genre.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Modifier</a>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+            <p class="text-center">Aucun genre musical</p>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+    </div>
 
-    <a href="{{ path('app_music_genre_new') }}">Create new</a>
+
+
 {% endblock %}

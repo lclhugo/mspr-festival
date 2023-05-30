@@ -1,0 +1,32 @@
+<nav class="bg-white shadow-md w-full cursor-pointer border-b-2 border-sky-600" id="pulse-link">
+	<div class="container mx-auto px-4 py-2 flex justify-between items-center">
+		<button class="font-bold text-3xl text-sky-600">B I G</button>
+		<button class="block text-sky-600">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+			</svg>
+		</button>
+	</div>
+	<div id="menu" class="hidden border-b-2 border-sky-600 absolute w-full bg-white shadow-md">
+		<ul class="container mx-auto px-4 py-2 flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-4">
+			<li>
+				<a href="#" class="font-semibold text-gray-500 hover:text-gray-900 duration-300">Festivals</a>
+			</li>
+			{% if app.user %}
+				<li>
+					<a href="#" class="font-semibold text-gray-500 hover:text-gray-900 duration-300">logout</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="#" class="font-semibold text-gray-500 hover:text-gray-900 duration-300">login</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+</nav>
+<script>
+	document.getElementById('pulse-link').addEventListener('click', () => {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('hidden');
+});
+</script>

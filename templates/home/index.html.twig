@@ -3,10 +3,10 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
 
         <div class="example-wrapper">
             <h1>Bienvenue</h1>
@@ -14,12 +14,17 @@
           Choisissez votre festival : 
             
              {% for festival in festivals %}
-         <div><a href="{{ path('app_home', {'id': festival.id}) }}">{{festival.name}}</a></div>
+         <div>
+         <button type="button" class='btn'>
+         <a href="{{ path('app_festival', {'id': festival.id}) }}">{{festival.name}}</a>
+         </button>
+         </div>
          {% endfor %}
         </div>
 
         <div class="mb-3">
             You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
+
 
 {% endblock %}

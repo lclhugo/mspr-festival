@@ -1,11 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
-{% block title %}New Location{% endblock %}
+
+{% block title %}Ajouter un Lieu{% endblock %}
 
 {% block body %}
-    <h1>Create new Location</h1>
 
-    {{ include('location/_form.html.twig') }}
+    <div class="flex justify-center mt-10">
+        <div class="w-8/12 bg-gray-900 p-6 rounded-lg border border-gray-700">
+            <h2 class="text-3xl font-bold text-center text-white">Ajouter un lieu </h2>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                {{ include('location/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('app_location_index') }}">back to list</a>
 {% endblock %}

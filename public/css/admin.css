@@ -4,3 +4,7 @@
     padding: 5px;
     background-color: red;
 }
+
+.festival_button {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}

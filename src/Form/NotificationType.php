@@ -15,11 +15,25 @@ class NotificationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content')
-            ->add('important')
-            ->add('festivalId', EntityType::class, [
-                'class' => 'App\Entity\Festival',
-                'choice_label' => 'name',
+            ->add('title',
+                null,
+                [
+                    'label' => 'Titre* :',
+                    'required' => true,
+                ]
+            )
+            ->add('content',
+                null,
+                [
+                    'label' => 'Contenu :',
+                    'attr' => [
+                        'rows' => 10,
+                    ],
+                ]
+            )
+            ->add('important', null, [
+                'label' => 'Important ?',
+                'required' => false,
             ])
         ;
         ;

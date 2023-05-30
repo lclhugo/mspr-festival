@@ -16,37 +16,42 @@ class EventType extends AbstractType
     {
         $builder
             ->add('name', TextType::class , [
-                'label' => 'Nom',
+                'label' => 'Nom* :',
+                'required' => true,
             ])
             ->add('startDate', DateTimeType::class, [
-                'label' => 'Date de début',
+                'label' => 'Date de début* :',
                 'widget' => 'single_text',
-                'attr' => ['min' => date('Y-m-d')],
+                'required' => true,
+                'attr' => ['min' => (new \DateTime())->format('D-m-Y H:i'),
+                    'class' => 'form-control',
+                ],
             ])
             ->add('endDate', DateTimeType::class, [
                 'widget' => 'single_text',
-                'attr' => ['min' => date('Y-m-d')],
-                'label' => 'Date de fin',
+                'label' => 'Date de fin* :',
+                'required' => true,
+                'attr' => ['min' => (new \DateTime())->modify('+1 day')->format('D-m-Y H:i'),
+                    'class' => 'form-control',],
             ])
             ->add('artist', EntityType::class, [
                 'class' => 'App\Entity\Artist',
                 'choice_label' => 'name',
-                'label' => 'Artiste',
+                'label' => 'Artiste* :',
+                'required' => true,
+
             ])
-//            ->add('festivalId', EntityType::class, [
-//                'class' => 'App\Entity\Festival',
-//                'choice_label' => 'name',
-//                'label' => 'Festival',
-//            ])
             ->add('category', EntityType::class, [
                 'class' => 'App\Entity\EventCategory',
                 'choice_label' => 'name',
-                'label' => 'Catégorie',
+                'label' => 'Catégorie* :',
+                'required' => true,
             ])
             ->add('location', EntityType::class, [
                 'class' => 'App\Entity\Location',
                 'choice_label' => 'name',
-                'label' => 'Lieu',
+                'label' => 'Lieu* :',
+                'required' => true,
             ])
         ;
     }
