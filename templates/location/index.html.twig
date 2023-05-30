@@ -9,20 +9,18 @@
                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded">Ajouter</a>
         </div>
         <h1 class="text-3xl font-bold text-center">Tous les Lieux</h1>
-
         <div class="flex flex-wrap justify-center mt-3 text-center">
             {% for location in locations %}
             <div class="max-w-sm rounded overflow-hidden shadow-lg m-3 bg-gray-700 px-3 py-3">
+
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2 text-center">{{ location.name }}</div>
                 </div>
 
                 <div class="px-6 py-4">
                     <div class="text-gray-300 text-base">{{ location.category.name }}</div>
-
                     <p class="text-gray-300 text-base text-center">{{ location.description }}</p>
 
-                    {#                latitude and longitude #}
                     <div class="px-6 py-4">
                         <div class="text-gray-300 text-base">Latitude: {{ location.latitude }}</div>
                         <div class="text-gray-300 text-base">Longitude: {{ location.longitude }}</div>
@@ -30,13 +28,13 @@
 
 
                     <div class="px-6 py-4 flex justify-center gap-3">
-                        {#                        <a href="{{ path('app_location_show', {'id': location.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Voir</a> #}
                         <a href="{{ path('app_location_edit', {'id': location.id}) }}"
                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Modifier</a>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
+
